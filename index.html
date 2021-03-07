@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&amp;display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./css/index.css">
+  <title>Frontend Mentor | Base Apparel coming soon page</title>
+
+</head>
+
+<body>
+  <header class="header">
+    <img src="./images/logo.svg" class="logo" alt="Logo">
+  </header>
+  <main class="content">
+
+    <!-- hero START-->
+    <div class="hero">
+      <div class="container">
+        <picture>
+          <source media="(max-width: 940px)" srcset="./images/hero-mobile.jpg">
+          <source media="(min-width: 941px)" srcset="./images/hero-desktop.jpg">
+          <img src="./images/hero-mobile.jpg" alt="Hero image">
+        </picture>
+      </div>
+    </div>
+    <!-- .hero END-->
+
+    <!-- .cta START-->
+    <div class="cta">
+      <div class="container">
+        <img src="./images/logo.svg" class="logo" alt="Logo">
+        <h1 class="cta__title"><span>We're</span> coming soon</h1>
+
+        <form action="#" class="cta__form" role="dialog" aria-label="Stay up-to-date form">
+          <div class="field">
+            <label for="email">Hello fellow shoppers! We're currently building our new fashion store.
+              Add your email below to stay up-to-date with announcements and our launch deals.</label>
+            <div class="control">
+              <input type="email" name="email" id="email" placeholder="Email Address"
+                data-error-message="Please provide a valid email" required />
+              <button class="cta__btn">
+                <img src="./images/icon-arrow.svg" alt="">
+              </button>
+            </div>
+            <span class="field__message" aria-live="polite"></span>
+          </div>
+
+        </form>
+      </div>
+      <!-- .container END-->
+    </div>
+    <!-- .cta END -->
+  </main>
+
+  <footer class="footer">
+    <p class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="https://github.com/nmorajda">N. Morajda</a>.
+    </p>
+  </footer>
+
+  <script>
+    const form = document.querySelector('form');
+    const field = form.querySelector('.field');
+    const fieldMessage = form.querySelector('.field__message');
+    const input = form.querySelector('input[type="email"]');
+    const submit = form.querySelector('button');
+
+    function showSuccess(input) {
+      field.className = 'field success';
+      fieldMessage.textContent = '';
+    }
+
+    function showError(input) {
+      field.className = 'field error';
+      fieldMessage.textContent = input.dataset.errorMessage;
+    }
+
+    // Disable browser validation
+    form.novalidate = true;
+    // Disable submit btn
+    // submit.disabled = true;
+
+
+    input.addEventListener('blur', () => {
+      input.validity.valid ? showSuccess(input) : showError(input)
+    });
+
+
+    // Check form validity 
+    form.addEventListener("change", (e) => {
+      submit.disabled = !form.checkValidity();
+    });
+  </script>
+</body>
+
+</html>
